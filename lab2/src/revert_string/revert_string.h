@@ -1,3 +1,3 @@
 /* function to revert string */
-void RevertString(char *str);
 
+void RevertString(char *str);
