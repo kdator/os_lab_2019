@@ -3,6 +3,9 @@
 
 #include "utils.h"
 
+/*
+ *  This function implemets search a max and a min element in an array.
+ */
 struct MinMax GetMinMax(int *array, unsigned int begin, unsigned int end);
 
 #endif
