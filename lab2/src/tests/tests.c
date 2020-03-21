@@ -25,6 +25,11 @@ void testRevertString(void) {
 
 int main() {
   CU_pSuite pSuite = NULL;
+  CU_pSuite first_suite = NULL;
+  CU_pSuite second_suite = NULL;
+  CU_pSuite third_suite = NULL;
+  CU_pSuite fourth_suite = NULL;
+
 
   /* initialize the CUnit test registry */
   if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
@@ -36,6 +41,31 @@ int main() {
     return CU_get_error();
   }
 
+  first_suite = CU_add_suite("First Suite", NULL, NULL);
+    if (NULL == first_suite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  second_suite = CU_add_suite("Second Suite", NULL, NULL);
+    if (NULL == second_suite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  third_suite = CU_add_suite("Third Suite", NULL, NULL);
+    if (NULL == third_suite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+  fourth_suite = CU_add_suite("Fourth Suite", NULL, NULL);
+    if (NULL == fourth_suite) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }
+
+
   /* add the tests to the suite */
   /* NOTE - ORDER IS IMPORTANT - MUST TEST fread() AFTER fprintf() */
   if ((NULL == CU_add_test(pSuite, "test of RevertString function",
@@ -43,6 +73,30 @@ int main() {
     CU_cleanup_registry();
     return CU_get_error();
   }
+
+  if ((NULL == CU_add_test(first_suite, "test_1",
+                           testRevertString))) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }   
+
+  if ((NULL == CU_add_test(second_suite, "check_2",
+                           testRevertString))) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }   
+
+  if ((NULL == CU_add_test(third_suite, "see_3",
+                           testRevertString))) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }   
+
+   if ((NULL == CU_add_test(fourth_suite, "test_4",
+                           testRevertString))) {
+    CU_cleanup_registry();
+    return CU_get_error();
+  }    
 
   /* Run all tests using the CUnit Basic interface */
   CU_basic_set_mode(CU_BRM_VERBOSE);
