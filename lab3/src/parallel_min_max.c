@@ -211,7 +211,7 @@ int main(int argc, char **argv) {
         min = atoi(min_str);
         max = atoi(max_str);
 
-        printf("Loaded: min: %d max: %d\n", min, max);
+        // printf("Loaded: min: %d max: %d\n", min, max);
 
 
         if (i == pnum - 1) { fclose(filePointer); }
@@ -266,11 +266,15 @@ int main(int argc, char **argv) {
 
   free(array);
 
-  printf("Parallel:\n min:%d max:%d\n", min_max.min, min_max.max);
-  printf("Sequential:\n min:%d max:%d\n", min_max_reference.min, min_max_reference.max);
+  printf("--------------------- Sequential_Parallel ---------------------\n");
+  printf("Parallel: min:%d max:%d\n", min_max.min, min_max.max);
+  printf("Sequential: min:%d max:%d\n", min_max_reference.min, min_max_reference.max);
 
   printf("Secquential elapsed time: %fms\n", sequential_elapsed_time);
   printf("Parallel elapsed time: %fms\n", elapsed_time);
+
+  printf("--------------------- ------------------- ---------------------\n");
+
   fflush(NULL);
   return 0;
 }

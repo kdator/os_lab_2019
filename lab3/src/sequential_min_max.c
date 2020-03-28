@@ -27,8 +27,11 @@ int main(int argc, char **argv) {
   struct MinMax min_max = GetMinMax(array, 0, array_size);
   free(array);
 
+  printf("--------------------- just sequential ---------------------\n");
   printf("min: %d\n", min_max.min);
   printf("max: %d\n", min_max.max);
+  printf("--------------------- ------------------- ---------------------\n");
+
 
   return 0;
 }
