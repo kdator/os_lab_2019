@@ -17,8 +17,9 @@ int main(int argc, char *argv[])
 
 	RevertString(reverted_str);
 
+
 	printf("Reverted: %s\n", reverted_str);
+
 	free(reverted_str);
 	return 0;
 }
-

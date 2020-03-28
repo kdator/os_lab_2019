@@ -1,0 +1,127 @@
+Last login: Sun Mar  1 11:49:09 on console
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Stephans-MacBook-Pro:~ stephansavchenko$ ls
+Applications
+Applications (Parallels)
+Creative Cloud Files
+Desktop
+Documents
+Downloads
+Library
+Movies
+Music
+Parallels
+Pictures
+Public
+PycharmProjects
+Recovered Files – 30 Dec 2019, 20:36:36
+SPASource.psd
+Yandex.Disk.localized
+Stephans-MacBook-Pro:~ stephansavchenko$ cd Documents/Education/
+Stephans-MacBook-Pro:Education stephansavchenko$ ls
+-Wno-framework-include-private-from-public
+Base.txt
+CS6
+CS_Lab
+CoreDataLessons
+FileManager
+KR
+KR.cpp
+KVCLesson
+Lab7
+Lab7.zip
+Lab7_PY.zip
+MapLesson
+Multithreading
+OOP_Lab
+OOP_Lab_Production
+OS_Labs
+ObjC
+PY_Lab
+PopOverLesson
+SWIFT
+SearchTest
+Swormius
+TableViewLessons
+UIControlsTest
+documentation
+krrr
+phontsViewDTLesson
+settingsLesson
+stuff
+test
+Stephans-MacBook-Pro:Education stephansavchenko$ cd
+Stephans-MacBook-Pro:~ stephansavchenko$ ls
+Applications
+Applications (Parallels)
+Creative Cloud Files
+Desktop
+Documents
+Downloads
+Library
+Movies
+Music
+Parallels
+Pictures
+Public
+PycharmProjects
+Recovered Files – 30 Dec 2019, 20:36:36
+SPASource.psd
+Yandex.Disk.localized
+Stephans-MacBook-Pro:~ stephansavchenko$ cd Documents/
+Stephans-MacBook-Pro:Documents stephansavchenko$ cd GitHub/
+Stephans-MacBook-Pro:GitHub stephansavchenko$ ls
+Swormius
+Stephans-MacBook-Pro:GitHub stephansavchenko$ git clone https://github.com/ChernichenkoStephan/os_lab_2019.git
+Cloning into 'os_lab_2019'...
+remote: Enumerating objects: 103, done.
+remote: Total 103 (delta 0), reused 0 (delta 0), pack-reused 103
+Receiving objects: 100% (103/103), 1.33 MiB | 402.00 KiB/s, done.
+Resolving deltas: 100% (8/8), done.
+Stephans-MacBook-Pro:GitHub stephansavchenko$ ls
+Swormius	os_lab_2019
+Stephans-MacBook-Pro:GitHub stephansavchenko$ cd os_lab_2019/
+Stephans-MacBook-Pro:os_lab_2019 stephansavchenko$ cd lab2
+Stephans-MacBook-Pro:lab2 stephansavchenko$ ls
+src	text
+Stephans-MacBook-Pro:lab2 stephansavchenko$ cd src
+Stephans-MacBook-Pro:src stephansavchenko$ ls
+revert_string	swap		tests
+Stephans-MacBook-Pro:src stephansavchenko$ cd swap
+Stephans-MacBook-Pro:swap stephansavchenko$ gcc swap.c main.c -o Test
+Stephans-MacBook-Pro:swap stephansavchenko$ ./Test
+Prew: a b
+After: a b
+Stephans-MacBook-Pro:swap stephansavchenko$ gcc swap.c main.c -o Test && ./Test
+swap.c:5:5: warning: implicitly declaring library function 'printf' with type
+      'int (const char *, ...)' [-Wimplicit-function-declaration]
+    printf("Before in s: %c %c\n", *left, *right);
+    ^
+swap.c:5:5: note: include the header <stdio.h> or explicitly provide a
+      declaration for 'printf'
+1 warning generated.
+Prew: a b
+Before in s: a b
+After in s: b a
+After: a b
+Stephans-MacBook-Pro:swap stephansavchenko$ gcc swap.c main.c -o Test && ./Test
+Prew: a b
+After: b a
+Stephans-MacBook-Pro:swap stephansavchenko$ rm Test
+Stephans-MacBook-Pro:swap stephansavchenko$ gcc swap.c main.c -o Task1 && ./Task1
+Prew: a b
+After: b a
+Stephans-MacBook-Pro:swap stephansavchenko$ cd ./
+Stephans-MacBook-Pro:swap stephansavchenko$ ls
+Task1	main.c	swap.c	swap.h
+Stephans-MacBook-Pro:swap stephansavchenko$ cd ../
+Stephans-MacBook-Pro:src stephansavchenko$ cd revert_string/
+Stephans-MacBook-Pro:revert_string stephansavchenko$ clear
+
+Stephans-MacBook-Pro:revert_string stephansavchenko$ cd ../
+Stephans-MacBook-Pro:src stephansavchenko$ touch BackUp.txt
+Stephans-MacBook-Pro:src stephansavchenko$ cd revert_string/
+Stephans-MacBook-Pro:revert_string stephansavchenko$ 

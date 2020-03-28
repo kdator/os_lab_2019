@@ -1,0 +1,76 @@
+
+libRevert.so:	file format Mach-O 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+_RevertString:
+     eb0:	55 	pushq	%rbp
+     eb1:	48 89 e5 	movq	%rsp, %rbp
+     eb4:	48 83 ec 20 	subq	$32, %rsp
+     eb8:	48 89 7d f8 	movq	%rdi, -8(%rbp)
+     ebc:	48 8d 3d df 00 00 00 	leaq	223(%rip), %rdi
+     ec3:	b0 00 	movb	$0, %al
+     ec5:	e8 b8 00 00 00 	callq	184 <dyld_stub_binder+0xf82>
+     eca:	c7 45 f4 00 00 00 00 	movl	$0, -12(%rbp)
+     ed1:	c7 45 f0 00 00 00 00 	movl	$0, -16(%rbp)
+     ed8:	89 45 e4 	movl	%eax, -28(%rbp)
+     edb:	48 8b 45 f8 	movq	-8(%rbp), %rax
+     edf:	48 63 4d f4 	movslq	-12(%rbp), %rcx
+     ee3:	0f be 14 08 	movsbl	(%rax,%rcx), %edx
+     ee7:	83 fa 00 	cmpl	$0, %edx
+     eea:	0f 84 17 00 00 00 	je	23 <_RevertString+0x57>
+     ef0:	8b 45 f4 	movl	-12(%rbp), %eax
+     ef3:	83 c0 01 	addl	$1, %eax
+     ef6:	89 45 f4 	movl	%eax, -12(%rbp)
+     ef9:	8b 45 f0 	movl	-16(%rbp), %eax
+     efc:	83 c0 01 	addl	$1, %eax
+     eff:	89 45 f0 	movl	%eax, -16(%rbp)
+     f02:	e9 d4 ff ff ff 	jmp	-44 <_RevertString+0x2b>
+     f07:	c7 45 e8 00 00 00 00 	movl	$0, -24(%rbp)
+     f0e:	8b 45 e8 	movl	-24(%rbp), %eax
+     f11:	8b 4d f0 	movl	-16(%rbp), %ecx
+     f14:	89 45 e0 	movl	%eax, -32(%rbp)
+     f17:	89 c8 	movl	%ecx, %eax
+     f19:	99 	cltd
+     f1a:	b9 02 00 00 00 	movl	$2, %ecx
+     f1f:	f7 f9 	idivl	%ecx
+     f21:	8b 4d e0 	movl	-32(%rbp), %ecx
+     f24:	39 c1 	cmpl	%eax, %ecx
+     f26:	0f 8d 50 00 00 00 	jge	80 <_RevertString+0xcc>
+     f2c:	48 8b 45 f8 	movq	-8(%rbp), %rax
+     f30:	48 63 4d e8 	movslq	-24(%rbp), %rcx
+     f34:	8a 14 08 	movb	(%rax,%rcx), %dl
+     f37:	88 55 ef 	movb	%dl, -17(%rbp)
+     f3a:	48 8b 45 f8 	movq	-8(%rbp), %rax
+     f3e:	8b 75 f0 	movl	-16(%rbp), %esi
+     f41:	2b 75 e8 	subl	-24(%rbp), %esi
+     f44:	83 ee 01 	subl	$1, %esi
+     f47:	48 63 ce 	movslq	%esi, %rcx
+     f4a:	8a 14 08 	movb	(%rax,%rcx), %dl
+     f4d:	48 8b 45 f8 	movq	-8(%rbp), %rax
+     f51:	48 63 4d e8 	movslq	-24(%rbp), %rcx
+     f55:	88 14 08 	movb	%dl, (%rax,%rcx)
+     f58:	8a 55 ef 	movb	-17(%rbp), %dl
+     f5b:	48 8b 45 f8 	movq	-8(%rbp), %rax
+     f5f:	8b 75 f0 	movl	-16(%rbp), %esi
+     f62:	2b 75 e8 	subl	-24(%rbp), %esi
+     f65:	83 ee 01 	subl	$1, %esi
+     f68:	48 63 ce 	movslq	%esi, %rcx
+     f6b:	88 14 08 	movb	%dl, (%rax,%rcx)
+     f6e:	8b 45 e8 	movl	-24(%rbp), %eax
+     f71:	83 c0 01 	addl	$1, %eax
+     f74:	89 45 e8 	movl	%eax, -24(%rbp)
+     f77:	e9 92 ff ff ff 	jmp	-110 <_RevertString+0x5e>
+     f7c:	48 83 c4 20 	addq	$32, %rsp
+     f80:	5d 	popq	%rbp
+     f81:	c3 	retq
+Disassembly of section __TEXT,__stubs:
+__stubs:
+     f82:	ff 25 78 10 00 00 	jmpq	*4216(%rip)
+Disassembly of section __TEXT,__stub_helper:
+__stub_helper:
+     f88:	4c 8d 1d 79 10 00 00 	leaq	4217(%rip), %r11
+     f8f:	41 53 	pushq	%r11
+     f91:	ff 25 69 00 00 00 	jmpq	*105(%rip)
+     f97:	90 	nop
+     f98:	68 00 00 00 00 	pushq	$0
+     f9d:	e9 e6 ff ff ff 	jmp	-26 <__stub_helper>

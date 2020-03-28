@@ -15,3 +15,6 @@ find_min_max.o : utils.h find_min_max.h
 
 clean :
 	rm utils.o find_min_max.o sequential_min_max parallel_min_max
+
+# ./parallel_min_max --seed 4 --array_size 10 --pnum 2
+# gcc -o parallel_min_max utils.o find_min_max.o parallel_min_max.c

@@ -1,0 +1,24 @@
+# Install and Use CUnit on macOS X
+
+# install cunit
+brew install cunit
+
+# link cunit
+brew link cunit
+
+# compile test files
+
+## Using GNU C Compiler:
+gcc test.c -lcunit -o test
+
+## Using LLVM (clang)
+clang test.c -lcunit -o test
+
+# So in order to link your unit tests together with the source files use something like this
+# Make sure test.c implements the main method and file-to-test does not.
+gcc test/test.c src/file-to-test.c -lcunit -o test
+
+gcc tests.c -lcunit -o test
+
+
+gcc -o test tests.c ~/Documents/GitHub/os_lab_2019/lab2/src/revert_string/dynamicly/libRevert.so -lcunit && ./test

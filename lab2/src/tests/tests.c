@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "revert_string.h"
+#include "../revert_string/revert_string.h"
 
 void testRevertString(void) {
   char simple_string[] = "Hello";
@@ -24,29 +24,34 @@ void testRevertString(void) {
 }
 
 int main() {
-  CU_pSuite pSuite = NULL;
+    CU_pSuite pSuite = NULL;
 
-  /* initialize the CUnit test registry */
-  if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
+    /* initialize the CUnit test registry */
+    if (CUE_SUCCESS != CU_initialize_registry()) return CU_get_error();
 
-  /* add a suite to the registry */
-  pSuite = CU_add_suite("Suite", NULL, NULL);
-  if (NULL == pSuite) {
+    /* add a suite to the registry */
+    pSuite = CU_add_suite("Suite", NULL, NULL);
+    if (NULL == pSuite) {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+    /* add the tests to the suite */
+    /* NOTE - ORDER IS IMPORTANT - MUST TEST fread() AFTER fprintf() */
+    if ((NULL == CU_add_test(pSuite, "test of RevertString function",
+                             testRevertString))) {
+      CU_cleanup_registry();
+      return CU_get_error();
+    }
+
+    /* Run all tests using the CUnit Basic interface */
+    CU_basic_set_mode(CU_BRM_VERBOSE);
+    CU_basic_run_tests();
     CU_cleanup_registry();
     return CU_get_error();
-  }
-
-  /* add the tests to the suite */
-  /* NOTE - ORDER IS IMPORTANT - MUST TEST fread() AFTER fprintf() */
-  if ((NULL == CU_add_test(pSuite, "test of RevertString function",
-                           testRevertString))) {
-    CU_cleanup_registry();
-    return CU_get_error();
-  }
-
-  /* Run all tests using the CUnit Basic interface */
-  CU_basic_set_mode(CU_BRM_VERBOSE);
-  CU_basic_run_tests();
-  CU_cleanup_registry();
-  return CU_get_error();
 }
+
+// gcc -c tests.c -o test.o
+// gcc   bin/main.o  -Lbin/static -ltq84 -o bin/statically-linked
+// gcc tests/test.o  -Lrevert_string/staticly -lRevert -o test
+// gcc tests/test.o  -Lrevert_string/dynamicly -lRevert -o test
