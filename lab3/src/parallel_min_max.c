@@ -109,13 +109,17 @@ int main(int argc, char **argv) {
               // printf("sussesful pipe\n");
           }
        }
+  } else {
+
+      /* clearing file from prew use */
+      FILE* cfp;
+      cfp = fopen("data.txt", "w+");
+      fprintf(cfp, "");
+      fclose(cfp);
+
   }
 
-  /* clearing file from prew use */
-  FILE* cfp;
-  cfp = fopen("data.txt", "w+");
-  fprintf(cfp, "");
-  fclose(cfp);
+
 
   for (int i = 0; i < pnum; i++) {
     pid_t child_pid = fork();
@@ -148,7 +152,6 @@ int main(int argc, char **argv) {
 
             int current_min_pipe = i * 2;
             int current_max_pipe = i * 2 + 1;
-
 
             /*  close reading  */
             close(fd[current_min_pipe][0]);
@@ -266,7 +269,11 @@ int main(int argc, char **argv) {
 
   free(array);
 
-  printf("--------------------- Sequential_Parallel ---------------------\n");
+  if (with_files) {
+      printf("--------------------- Files Sequential_Parallel ---------------------\n");
+  } else {
+      printf("--------------------- Pipes Sequential_Parallel ---------------------\n");
+  }
   printf("Parallel: min:%d max:%d\n", min_max.min, min_max.max);
   printf("Sequential: min:%d max:%d\n", min_max_reference.min, min_max_reference.max);
 
