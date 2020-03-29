@@ -1,11 +1,52 @@
 # Лабораторная работа №3
 
+## Как жать?
+
+### Назначения кастомных файлов
+
+1. ".gitignore" убирает лишние файлы из видимости Git
+2. "backgroundResult.txt"
+3. "data.txt" файл для синхронизации потоков (задание 3)
+4. "start.sh" файл для демонстрации тестового задания (запускает все, )
+
+### Так как жать?
+
+1. Вводим команду "./start.sh" и СТАРТУЕМ
+
+### Если нада жать сложна ( показать/посмотреть детали )
+
+* Вводим команду "make all" и СТАРТУЕМ (компилит и линкует все задания)
+* Вводим команду "make sequential_min_max" и СТАРТУЕМ (компилит и линкует все задание 1)
+* Вводим команду "make parallel_min_max" и СТАРТУЕМ (компилит и линкует все задание 2-3)
+* Вводим команду "make background" и СТАРТУЕМ (компилит и линкует все задание 5)
+* Вводим команду "make clean" и СТАРТУЕМ (удаляет все новые файлы (не работает с 5-ым))
+* Вводим команду "make cleanFive" и СТАРТУЕМ (удаляет 5-ое)
+
+### Good links (Maybe better than in lab (better for shure))
+
+#### Getopt:
+* http://www.firststeps.ru/linux/r.php?11
+
+#### Pipes:
+* https://www.geeksforgeeks.org/creating-multiple-process-using-fork/?ref=rp
+* https://www.geeksforgeeks.org/calculation-parent-child-process-using-fork/?ref=rp
+* https://www.geeksforgeeks.org/c-program-demonstrate-fork-and-pipe/?ref=rp
+
+#### Makefile:
+* https://habr.com/en/post/155201/
+* https://habr.com/en/post/211751/
+
+#### Exec:
+* https://www.geeksforgeeks.org/difference-fork-exec/
+* https://www.softprayog.in/programming/creating-processes-with-fork-and-exec-in-linux
+
+
 ## Задание 1
 
 ### Необходимые знания
 
 1. Аргументы командной строки
-2. Сборка с помощью gcc (clang) 
+2. Сборка с помощью gcc (clang)
 
 Написать функцию GetMinMax в find\_max\_min.c, которая ищет минимальный и максимальный элементы массива, на заданном промежутке.
 Разобраться, что делает программа в sequiential\_min\_max.c, скомпилировать, проверить, что написанный вами GetMinMax работает правильно.

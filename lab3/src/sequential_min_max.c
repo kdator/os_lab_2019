@@ -28,10 +28,12 @@ int main(int argc, char **argv) {
   free(array);
 
   FILE* fp;
-  fp = fopen("backgroundResult.txt", "w+");
-  fprintf(fp, "min: %d\n", min_max.min);
-  fprintf(fp, "max: %d\n", min_max.max);
-  fclose(fp);
+  fp = fopen("DataFiles/backgroundResult.txt", "w+");
+  if (fp) {
+      fprintf(fp, "min: %d\n", min_max.min);
+      fprintf(fp, "max: %d\n", min_max.max);
+      fclose(fp);
+  }
 
   printf("--------------------- just sequential ---------------------\n");
   printf("min: %d\n", min_max.min);

@@ -31,6 +31,8 @@ int main(int argc, char **argv) {
                                       {0, 0, 0, 0}};
 
     int option_index = 0;
+
+    /* Function for reading flags in input */
     int c = getopt_long(argc, argv, "f", options, &option_index);
 
     if (c == -1) break;
@@ -41,17 +43,26 @@ int main(int argc, char **argv) {
           case 0:
             seed = atoi(optarg);
             // your code here
-            // printf("seed %d\n", seed);
+            if (seed <= 0) {
+                printf("seed must be positiv number (better if bigger than 5)%d\n", seed);
+                return 1;
+            }
             break;
           case 1:
             array_size = atoi(optarg);
             // your code here
-            // printf("array_size %d\n", array_size);
+            if (array_size <= 0) {
+                printf("array_size must be positiv number (better if bigger than 5)%d\n", array_size);
+                return 1;
+            }
             break;
           case 2:
             pnum = atoi(optarg);
             // your code here
-            // printf("pnum %d\n", pnum);
+            if (pnum <= 0) {
+                printf("pnum must be positiv number (better if bigger than 5)%d\n", pnum);
+                return 1;
+            }
             break;
           case 3:
             with_files = true;
@@ -93,8 +104,10 @@ int main(int argc, char **argv) {
   gettimeofday(&start_time, NULL);
 
   /* Making pipes array */
+  // 1 for min, 1 for max, for each of pipes
   int pipes_num = pnum * 2;
   int fd[pipes_num][2];
+  // step for dividing
   int step = array_size/pnum;
 
   /* creating pipes from array */
@@ -106,20 +119,18 @@ int main(int argc, char **argv) {
                fprintf(stderr, "Pipe Failed" );
                return 1;
            } else {
-              // printf("sussesful pipe\n");
+              //printf("sussesful pipe\n");
           }
        }
   } else {
 
       /* clearing file from prew use */
       FILE* cfp;
-      cfp = fopen("data.txt", "w+");
+      cfp = fopen("DataFiles/data.txt", "w+");
       fprintf(cfp, "");
       fclose(cfp);
 
   }
-
-
 
   for (int i = 0; i < pnum; i++) {
     pid_t child_pid = fork();
@@ -129,9 +140,12 @@ int main(int argc, char **argv) {
       if (child_pid == 0) {
         /* --------------------- child process --------------------- */
 
+        // dividing array by parts to calculate
         int start_index = i * step;
         int end_index = (i + 1) * step;
-
+        /* flexibility for not round arrays */
+        if (i == pnum -1) { end_index = array_size - 1;}
+        //printf("end_index: %d\n", end_index);
         struct MinMax min_max = GetMinMax(array, start_index, end_index);
 
         if (with_files) {
@@ -141,7 +155,7 @@ int main(int argc, char **argv) {
             int bufferLength = 255;
             char buffer[bufferLength];
 
-            filePointer = fopen("data.txt", "a+");
+            filePointer = fopen("DataFiles/data.txt", "a+");
 
             fprintf(filePointer, "%d\n%d\n", min_max.min, min_max.max);
 
@@ -153,7 +167,7 @@ int main(int argc, char **argv) {
             int current_min_pipe = i * 2;
             int current_max_pipe = i * 2 + 1;
 
-            /*  close reading  */
+            /*  close reading from pipes */
             close(fd[current_min_pipe][0]);
             close(fd[current_max_pipe][0]);
 
@@ -168,7 +182,7 @@ int main(int argc, char **argv) {
             write(fd[current_min_pipe][1], str_min_num, strlen(str_min_num)+1);
             write(fd[current_max_pipe][1], str_max_num, strlen(str_max_num)+1);
 
-            /*  close writing  */
+            /*  close writing to pipes  */
             close(fd[current_min_pipe][1]);
             close(fd[current_max_pipe][1]);
         }
@@ -182,14 +196,16 @@ int main(int argc, char **argv) {
   }
 
   while (active_child_processes > 0) {
-    // your code here
+
+    // synchronization
     wait(NULL);
 
     active_child_processes -= 1;
   }
 
+  /* creating file pointer to receive the data from pipes */
   FILE* filePointer;
-  filePointer = fopen("data.txt", "r");
+  filePointer = fopen("DataFiles/data.txt", "r");
 
   struct MinMax min_max;
   min_max.min = INT_MAX;
@@ -214,8 +230,7 @@ int main(int argc, char **argv) {
         min = atoi(min_str);
         max = atoi(max_str);
 
-        // printf("Loaded: min: %d max: %d\n", min, max);
-
+        // printf("Loaded: min: %d max: %d\n", min, max); // uncomment this to look what did load
 
         if (i == pnum - 1) { fclose(filePointer); }
 
@@ -257,6 +272,7 @@ int main(int argc, char **argv) {
   struct timeval sequential_start_time;
   gettimeofday(&sequential_start_time, NULL);
 
+  /* sequiential calculating for compearing the results */
   struct MinMax min_max_reference = GetMinMax(array, 0, array_size);
 
   struct timeval sequential_finish_time;

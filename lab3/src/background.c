@@ -12,6 +12,7 @@ int main (int argc, char **argv)
     int pid;
     int status, ret;
 
+    // Default parameters
 	char * argv_list[] = {"10", "10", "100", NULL};
 
     pid = fork ();
@@ -19,7 +20,8 @@ int main (int argc, char **argv)
     if (pid == 0) {
         // I am the child
 		printf("--------------------- Background process ---------------------\n");
-
+        printf("parameters %d\n", argc);
+        // Usage by default or entered parameters
 		if (argc != 3) {
 	      printf("Usage: %s seed arraysize\n", argv[0]);
 		  execv("sequential_min_max", argv_list);

@@ -12,6 +12,8 @@ sequential_min_max : utils.o find_min_max.o utils.h find_min_max.h
 
 parallel_min_max : utils.o find_min_max.o utils.h find_min_max.h
 	$(CC) -o parallel_min_max find_min_max/utils.o find_min_max/find_min_max.o parallel_min_max.c $(CFLAGS)
+	mkdir DataFiles
+	touch DataFiles/data.txt
 
 utils.o : utils.h
 	mkdir find_min_max
@@ -22,8 +24,14 @@ find_min_max.o : utils.h find_min_max.h
 
 background : background.c
 	$(CC) -o background background.c $(CFLAGS)
+	mkdir DataFiles
+	touch DataFiles/backgroundResult.txt
+
+cleanFive :
+	rm background
+	rm -r DataFiles
+
 
 clean :
-	rm -r find_min_max
-	rm sequential_min_max parallel_min_max
-	rm background
+	rm -r find_min_max DataFiles
+	rm sequential_min_max parallel_min_max background
