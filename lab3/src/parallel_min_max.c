@@ -85,10 +85,12 @@ int main(int argc, char **argv) {
 
   struct timeval start_time;
   gettimeofday(&start_time, NULL);
-  FILE *shared_file;
   int pipefd[2];
   if (with_files) {
-    shared_file = fopen("lab3", "w+");
+    FILE *shared_file;
+    shared_file = fopen("lab3.txt", "w+");
+    fprintf(shared_file, "");
+    fclose(shared_file);
   } else {
     if (pipe(pipefd) == -1) {
       perror("\nERROR CREATE PIPE!\n");
@@ -110,9 +112,14 @@ int main(int argc, char **argv) {
           end = array_size;
         struct MinMax min_max = GetMinMax(array, start, end);
         if (with_files) {
+          FILE *shared_file;
+          shared_file = fopen("lab3.txt", "a+");
           fwrite(&min_max, sizeof(struct MinMax), 1, shared_file);
+          fclose(shared_file);
         } else {
+          close(pipefd[0]);
           write(pipefd[1], &min_max, sizeof(struct MinMax));
+          close(pipefd[1]);
         }
         return 0;
       }
@@ -126,10 +133,9 @@ int main(int argc, char **argv) {
     wait(NULL);
     active_child_processes -= 1;
   }
-  if (with_files) {
-    fclose(shared_file);
-    shared_file = fopen("lab3", "r");
-  }
+
+  FILE *shared_file;
+  shared_file = fopen("lab3.txt", "r");
 
   struct MinMax min_max;
   min_max.min = INT_MAX;
@@ -142,8 +148,12 @@ int main(int argc, char **argv) {
 
     if (with_files) {
       fread(&tmp_min_max, sizeof(struct MinMax), 1, shared_file);
+      if (i == pnum - 1) 
+        fclose(shared_file);
     } else {
+      close(pipefd[1]);
       read(pipefd[0], &tmp_min_max, sizeof(struct MinMax));
+      close(pipefd[0]);
     }
     min = tmp_min_max.min;
     max = tmp_min_max.max;
@@ -163,9 +173,9 @@ int main(int argc, char **argv) {
 
   free(array);
 
-  printf("Min: %d\n", min_max.min);
+  printf("\nMin: %d\n", min_max.min);
   printf("Max: %d\n", min_max.max);
-  printf("Elapsed time: %fms\n", elapsed_time);
+  printf("Elapsed time: %fms\n\n", elapsed_time);
   fflush(NULL);
   return 0;
 }
