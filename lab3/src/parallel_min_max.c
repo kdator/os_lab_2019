@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
     min = tmp_min_max.min;
     max = tmp_min_max.max;
 
-    // ToDo: find mistake in min_max.
+
     if (min < min_max.min) 
       min_max.min = min;
     if (max > min_max.max) 
