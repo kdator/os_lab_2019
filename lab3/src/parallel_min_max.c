@@ -146,6 +146,7 @@ int main(int argc, char **argv) {
     int max = INT_MIN;
     struct MinMax tmp_min_max;
 
+    // :)
     if (with_files) {
       fread(&tmp_min_max, sizeof(struct MinMax), 1, shared_file);
       if (i == pnum - 1) 
