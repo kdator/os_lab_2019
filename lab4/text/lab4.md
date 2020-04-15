@@ -1,13 +1,47 @@
-<!-- # Лабораторная работа №4
+# Лабораторная работа №4
+
+## Как жать?
+
+### Назначения кастомных файлов
+
+1. ".gitignore" убирает лишние файлы из видимости Git
+2. "start.sh" файл для демонстрации тестового задания (запускает все, )
+3. "Sum/" - папка с заданиями 4 и 5 (там все так же)
 
 
+### Так как жать?
 
-alarm https://aljensencprogramming.wordpress.com/2014/05/09/introduction-to-signals-using-alarm-in-linux-c/
-https://rtfm.co.ua/linux-c-adresnoe-prostranstvo-processa/
-https://www.objc.io/issues/6-build-tools/mach-o-executables/
-https://habr.com/en/company/nix/blog/277759/
-https://habr.com/en/sandbox/114114/
+1. Вводим команду "./start.sh" и СТАРТУЕМ
+
+### Если нада жать сложна ( показать/посмотреть детали )
+
+* Вводим команду "make parallel_min_max" и СТАРТУЕМ (компилит и линкует все задание 1)
+* Вводим команду "make showcase" и СТАРТУЕМ (компилит задание 2)
+* Переходим в "Sum/" водим команду "make sum" и СТАРТУЕМ (задания 5-6)
+
+### Good links (Maybe better than in lab (better for shure))
+
+#### Getopt:
+* http://www.firststeps.ru/linux/r.php?11
+
+#### Makefile:
+* https://habr.com/en/post/155201/
+* https://habr.com/en/post/211751/
+
+#### Exec:
+* https://www.geeksforgeeks.org/difference-fork-exec/
+* https://www.softprayog.in/programming/creating-processes-with-fork-and-exec-in-linux
+
+#### Signals:
+https://aljensencprogramming.wordpress.com/2014/05/09/introduction-to-signals-using-alarm-in-linux-c/
+
+#### How data work:
 https://en.wikipedia.org/wiki/Data_segment#Data
+https://rtfm.co.ua/linux-c-adresnoe-prostranstvo-processa/
+
+#### Other:
+http://citforum.ck.ua/programming/cpp_march/cpp_048.shtml
+https://habr.com/en/sandbox/114114/
 
 ## Задание 1
 
@@ -55,7 +89,7 @@ https://en.wikipedia.org/wiki/Data_segment#Data
 
 Создать makefile, который собирает программы из задания 1 и 3.
 
-## Задание 5 -->
+## Задание 5
 
 ### Необходимые знания
 

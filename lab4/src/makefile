@@ -19,6 +19,3 @@ utils.o : ../../lab3/src/utils.h
 
 find_min_max.o : ../../lab3/src/utils.h  ../../lab3/src/find_min_max.h
 	$(CC) -o find_min_max/find_min_max.o -c ../../lab3/src/find_min_max.c $(CFLAGS)
-
-teeeeest :
-	$(CC) -o test.o -c ../../lab3/src/test.c $(CFLAGS)
