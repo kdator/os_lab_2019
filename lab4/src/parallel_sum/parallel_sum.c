@@ -3,25 +3,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <pthread.h>
 
 #include <sys/time.h>
 
-#include <pthread.h>
-
 #include "utils.h"
-
-int Sum(const struct SumArgs *args) {
-  int sum = 0;
-  for (size_t i = args->begin; i < args->end; i++) {
-    sum += args->array[i];
-  }
-  return sum;
-}
-
-void *ThreadSum(void *args) {
-  struct SumArgs *sum_args = (struct SumArgs *)args;
-  return (void *)(size_t)Sum(sum_args);
-}
+#include "ThreadFunctions.h"
 
 int main(int argc, char **argv) {
 
