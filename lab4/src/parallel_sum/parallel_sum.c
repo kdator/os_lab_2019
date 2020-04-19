@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <getopt.h>
 
+#include <sys/time.h>
+
 #include <pthread.h>
 
 #include "utils.h"
@@ -27,6 +29,7 @@ int main(int argc, char **argv) {
   uint32_t array_size = -1;
   uint32_t seed = -1;
 
+  /* Разбор параметров командой строки. */
   while (1) {
     static struct option options[] = {{"threads_num", required_argument, 0, 0},
                                       {"array_size", required_argument, 0, 0},
@@ -72,18 +75,17 @@ int main(int argc, char **argv) {
     return 1;
   }
 
+  pthread_t threads[threads_num]; /**< массив индентификаторов потоков. */
+  struct SumArgs args[threads_num]; /**< массив структур, который описывает границы для суммирования
+    элементов массива, который лежит по указателю внутри структуры. */
 
-  pthread_t threads[threads_num];
-  struct SumArgs args[threads_num];
-
-  int *array = (int*)malloc(sizeof(int) * array_size);
+  int *array = (int*)malloc(sizeof(int) * array_size); /**< создаём и генерируем массив. */
   GenerateArray(array, array_size, seed);
-  int sum = 0;
-  for (int i = 0; i < array_size; i++) {
-    sum += array[i];
-  }
-  printf("%i ", sum);
   
+  struct timeval start_time;
+  gettimeofday(&start_time, NULL);
+
+  /* переменная, которая делит массив для суммирования по частям. */
   int active_step = threads_num < array_size ? (array_size / threads_num) : 1;
   for (uint32_t i = 0; i < threads_num; i++) {
     if (i == threads_num - 1)
@@ -108,7 +110,14 @@ int main(int argc, char **argv) {
     total_sum += sum;
   }
 
+  struct timeval finish_time;
+  gettimeofday(&finish_time, NULL);
+
+  double elapsed_time = (finish_time.tv_sec - start_time.tv_sec) * 1000.0;
+  elapsed_time += (finish_time.tv_usec - start_time.tv_usec) / 1000.0;
+
   free(array);
   printf("Total: %d\n", total_sum);
+  printf("Elapsed time: %fms\n\n", elapsed_time);
   return 0;
 }
