@@ -21,7 +21,6 @@ volatile int child_processes_number;
 
 static void alarmHandler(int signal) {
   for (int i = 0; i < child_processes_number; i++) {
-    printf("killing child process - %i", child_processes_array[i]);
     kill(child_processes_array[i], SIGKILL);
   }
 }
