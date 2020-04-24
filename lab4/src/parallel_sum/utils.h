@@ -21,7 +21,7 @@ struct SumArgs {
  * \param array указатель на целочисленный массив, куда будет идти генерация чисел.
  * \param array_size количество элементов для генерации.
  * \param seed "семя" для генерации элементов.
-*/
+ */
 void GenerateArray(int *array, unsigned int array_size, unsigned int seed);
 
 #endif /* UTILS_H_ */
