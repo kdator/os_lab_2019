@@ -68,6 +68,11 @@ int main(int argc, char **argv) {
 
   int *array = (int*)malloc(sizeof(int) * array_size); /**< создаём и генерируем массив. */
   GenerateArray(array, array_size, seed);
+
+  int sum_without_threads = 0;
+  for (auto i = 0; i < array_size; i++)
+    sum_without_threads += array[i];
+  printf("\nSum without threads: %i.\n", sum_without_threads);
   
   struct timeval start_time;
   gettimeofday(&start_time, NULL);
@@ -104,7 +109,7 @@ int main(int argc, char **argv) {
   elapsed_time += (finish_time.tv_usec - start_time.tv_usec) / 1000.0;
 
   free(array);
-  printf("Total: %d\n", total_sum);
+  printf("Sum with threads: %d\n", total_sum);
   printf("Elapsed time: %fms\n\n", elapsed_time);
   return 0;
 }
