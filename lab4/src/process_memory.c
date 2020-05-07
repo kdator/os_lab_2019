@@ -10,11 +10,12 @@
 /* Below is a macro definition */
 #define SHW_ADR(ID, I) (printf("ID %s \t is at virtual address: %8X\n", ID, &I))
 
+static int test = 10;
 extern int etext, edata, end; /* Global variables for process
                                  memory */
 
 char *cptr = "This message is output by the function showit()\n"; /* Static */
-char buffer1[25];
+char buffer1[25] = "TestHello";
 int showit(); /* Function prototype */
 
 main() {
@@ -28,6 +29,7 @@ main() {
   SHW_ADR("main", main);
   SHW_ADR("showit", showit);
   SHW_ADR("cptr", cptr);
+  SHW_ADR("test", test);
   SHW_ADR("buffer1", buffer1);
   SHW_ADR("i", i);
   strcpy(buffer1, "A demonstration\n");   /* Library function */

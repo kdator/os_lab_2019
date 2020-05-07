@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
 
   while (active_child_processes > 0) {
     int status = -1;
-    waitpid(-1, &status, 0);
+    waitpid(-1, &status, WNOHANG);
     active_child_processes -= 1;
   }
 
