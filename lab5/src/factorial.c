@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  int* array = (int*)malloc(k * sizeof(int));
+  int *array = (int*)malloc(k * sizeof(int));
   for (int i = 0; i < k; i++) {
     array[i] = i + 1;
   }
