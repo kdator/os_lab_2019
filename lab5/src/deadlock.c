@@ -1,6 +1,5 @@
 #include <pthread.h>
 #include <stdio.h>
-#include <unistd.h>
 
 pthread_mutex_t first_variable_mutex;
 pthread_mutex_t second_variable_mutex;
