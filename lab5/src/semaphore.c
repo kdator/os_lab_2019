@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 
   for(uint32_t i = 0; i < threads_num; i++) {
     if (pthread_create(&threads[i], NULL, start_factorial, (void*)&factorial_parts[i])) {
-      perror("\nERROR CREATE THREAD.\n");
+      perror("\nERROR CREATE THREAD\n");
       return 1;
     }
   }
@@ -104,8 +104,8 @@ int main(int argc, char **argv) {
   }
   // pthread_mutex_destroy(&factorial_mutex);
   sem_destroy(&semaphore);
-  printf("Sum = %i.\n", factorial_answer);
-  printf("Sum with mod = %i.\n", factorial_answer % mod_num);
+  printf("The factorial of %i equals %i.\n", k, factorial_answer);
+  printf("The factorial of %i with module %i equals %i.\n", k, mod_num, factorial_answer % mod_num);
 
   return 0;
 }

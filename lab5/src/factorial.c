@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
 
   for(uint32_t i = 0; i < threads_num; i++) {
     if (pthread_create(&threads[i], NULL, start_factorial, (void*)&factorial_parts[i])) {
-      perror("\nERROR CREATE THREAD.\n");
+      perror("\nERROR CREATE THREAD\n");
       return 1;
     }
   }
