@@ -101,8 +101,8 @@ int main(int argc, char **argv) {
     pthread_join(threads[i], NULL);
   }
   pthread_mutex_destroy(&factorial_mutex);
-  printf("Sum = %i.\n", factorial_answer);
-  printf("Sum with mod = %i.\n", factorial_answer % mod_num);
+  printf("The factorial of %i equals %i.\n", k, factorial_answer);
+  printf("The factorial of %i with module %i equals %i.\n", k, mod_num, factorial_answer % mod_num);
 
   return 0;
 }
